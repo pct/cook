@@ -1,0 +1,33 @@
+想法：
+config 使用 yml or 其他方便設定的方式，不喜歡 json
+撰寫使用 markdown
+url 可以自訂，但預先加入前綴日期
+
+settings
+title
+subtitle
+intro
+author
+email (for contact us)
+per_page
+disqus_shortname
+
+post
+title
+pub_date
+published
+permalink, 網址應為 year/month/day/title (@TODO)
+content
+tags (@TODO)
+
+todo
+面板
+tag
+slug
+rss
+文章列表/archive
+
+
+=====
+參考 purelog, hexo, 4press, ghost...
+
