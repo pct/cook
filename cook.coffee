@@ -3,9 +3,10 @@ program = require 'commander'
 yaml = require 'js-yaml'
 moment = require 'moment'
 markdown = require('markdown').markdown
-fs = require 'fs'
+fs = require 'fs-extra'
 
 _log = console.log
+_err = console.error
 
 program.version '0.0.1'
 
@@ -14,9 +15,15 @@ program
   .command 'new [project_name]'
   .description 'create a new blog'
   .action (env, options) ->
-    _log env
+    source = 'lib/template' # TODO full path?
+    target = env
+    fs.copy source, target, (err) ->
+      return _err(err) if err
+      _log "new [#{env}] created!"
+
 
 ##TODO post
+# TODO date, title, tag, ...
 program
   .command 'post [title]'
   .description 'post a new article'
