@@ -1,15 +1,19 @@
-## command
+#!/usr/local/bin/coffee
+## require
 program = require 'commander'
 yaml = require 'js-yaml'
 moment = require 'moment'
 markdown = require('markdown').markdown
 fs = require 'fs-extra'
 
+## alias
 _log = console.log
 _err = console.error
 
+## version
 program.version '0.0.1'
 
+## actions
 ##TODO new
 program
   .command 'new [project_name]'
@@ -25,10 +29,11 @@ program
 ##TODO post
 # TODO date, title, tag, ...
 program
-  .command 'post [title]'
+  .command 'post [your awesome post title]'
   .description 'post a new article'
   .action (env, options) ->
-    _log env
+    file_name = options.parent.rawArgs[3..].join '-'
+    file_path = "#{file_name}.md"
 
 ##TODO build
 program
