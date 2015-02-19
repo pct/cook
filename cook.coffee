@@ -1,25 +1,28 @@
 #!/usr/local/bin/coffee
+# TODO init template
+# TODO post template
 ## require
-program = require 'commander'
-yaml = require 'js-yaml'
+fs = require 'fs-extra'
 moment = require 'moment'
 markdown = require('markdown').markdown
-fs = require 'fs-extra'
+program = require 'commander'
+path = require 'path'
+yaml = require 'js-yaml'
 
 ## alias
 _log = console.log
 _err = console.error
+TEMPLATE_PATH = "#{__dirname}/template"
 
 ## version
 program.version '0.0.1'
 
 ## actions
-##TODO new
 program
   .command 'new [project_name]'
   .description 'create a new blog'
   .action (env, options) ->
-    source = 'lib/template' # TODO full path?
+    source = "#{TEMPLATE_PATH}/blog"
     target = env
     fs.copy source, target, (err) ->
       return _err(err) if err
@@ -32,8 +35,11 @@ program
   .command 'post [your awesome post title]'
   .description 'post a new article'
   .action (env, options) ->
-    file_name = options.parent.rawArgs[3..].join '-'
-    file_path = "#{file_name}.md"
+    current_dir = path.resolve()
+    filename = options.parent.rawArgs[3..].join '-'
+    target = "#{target}/posts/#{filename}.md"
+    source = "#{TEMPLATE_PATH}/post/new.md"
+
 
 ##TODO build
 program
