@@ -15,18 +15,19 @@ _err = console.error
 TEMPLATE_PATH = "#{__dirname}/template"
 
 ## version
-program.version '0.0.1'
+program.version = require('./package.json').version
 
 ## actions
 program
   .command 'new [project_name]'
   .description 'create a new blog'
   .action (env, options) ->
+    return _err 'Please enter a new project name' if not env
     source = "#{TEMPLATE_PATH}/blog"
     target = env
     fs.copy source, target, (err) ->
       return _err(err) if err
-      _log "new [#{env}] created!"
+      _log "new [#{target}] blog created!"
 
 
 ##TODO post
@@ -37,8 +38,11 @@ program
   .action (env, options) ->
     current_dir = path.resolve()
     filename = options.parent.rawArgs[3..].join '-'
-    target = "#{target}/posts/#{filename}.md"
+    target = "posts/#{filename}.md"
     source = "#{TEMPLATE_PATH}/post/new.md"
+    fs.copy source, target, (err) ->
+      return _err(err) if err
+      _log "file [#{target}] created!"
 
 
 ##TODO build
