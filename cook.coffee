@@ -15,7 +15,8 @@ _err = console.error
 TEMPLATE_PATH = "#{__dirname}/template"
 
 ## version
-program.version = require('./package.json').version
+version = require('./package.json').version
+program.version version
 
 ## actions
 program
