@@ -1,5 +1,8 @@
 name: My blog
 description: Just another cool blog
+author: pct
 keywords: cook,blog
 email: pct@example.com
 url: http://example.com
+disqus_shortname: sample
+per_page: 10
