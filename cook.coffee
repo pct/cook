@@ -61,6 +61,8 @@ program
 
 
 ##TODO build
+# TODO the build dir and check build root
+# TODO check if config.yml here
 program
   .command 'build'
   .description 'build static files'
